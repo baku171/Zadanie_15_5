@@ -1,0 +1,24 @@
+{
+  "name": "zadanie14_5",
+  "version": "1.0.0",
+  "description": "React",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "baku171",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^16.0.18",
+    "babel-standalone": "^6.26.0",
+    "grunt": "^0.4.5",
+    "http-server": "^0.10.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^1.1.0"
+  }
+}
