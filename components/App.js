@@ -3,14 +3,20 @@ var GIPHY_API_URL = 'https://api.giphy.com';
 
 App = React.createClass({
     getInitialState: function () {
-        return {loading: false, searchingText: '', gif: {}};
+        return {
+            loading: false, 
+            searchingText: '', 
+            gif: {}
+        };
     },
 
     handleSearch: function (searchingText) {
         this.setState({loading: true});
-        this.getGif(searchingText).then(gif => {
+        this.getGif(searchingText)
+        .then(gif => {
             this.setState({loading: false, gif: gif, searchingText: searchingText});
-        });
+        })
+        .catch(error => console.error('Błąd podczas pobierania', error));
     },
 
     getGif: function (searchingText) {
@@ -20,24 +26,21 @@ App = React.createClass({
             xhr.open('GET', url);
             xhr.onload = function () {
                 if (xhr.status === 200) {
-                    var data = JSON
-                        .parse(xhr.responseText)
-                        .data;
+                    var data = JSON.parse(xhr.responseText).data;
                     var gif = {
                         url: data.fixed_width_downsampled_url,
                         sourceUrl: data.url
                     };
                     resolve(gif);
                 } else {
-                    reject(xhr.status);
-                    console.log('ERROR!!!');
+                    reject(new Error(xhr.status));
                 }
             }
             xhr.send();
         });
     },
 
-    render : function () {
+    render: function () {
 
         var styles = {
             margin: '0 auto',
