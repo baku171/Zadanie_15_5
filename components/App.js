@@ -13,10 +13,13 @@ App = React.createClass({
     handleSearch: function (searchingText) {
         this.setState({loading: true});
         this.getGif(searchingText)
-        .then(gif => {
-            this.setState({loading: false, gif: gif, searchingText: searchingText});
-        })
-        .catch(error => console.error('Błąd podczas pobierania', error));
+            .then(gif => {
+                this.setState({
+                    loading: false, 
+                    gif: gif, 
+                    searchingText: searchingText});
+            })
+            .catch(error => console.error('Błąd podczas pobierania', error));
     },
 
     getGif: function (searchingText) {
